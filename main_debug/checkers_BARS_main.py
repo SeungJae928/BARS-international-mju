@@ -413,10 +413,10 @@ def qwerty():
             # остальные кнопки
             if (control_memory_mode!=5):
                 canvas.create_text(ras*10.5,ras*0.35,text="포지셔닝",font="Verdana 8",justify=CENTER,fill="grey")
-                canvas.create_text(ras*10.6,ras*0.75,text="흰색 말",font="Verdana 8",justify=CENTER,fill="black") # ras*10.8,ras*0.75,
+                canvas.create_text(ras*10.5,ras*0.75,text="흰색 말",font="Verdana 8",justify=CENTER,fill="black") # ras*10.8,ras*0.75,
                 canvas.create_text(ras*10.5,ras*1.0,text="흰색 킹",font="Verdana 8",justify=CENTER,fill="black")
-                canvas.create_text(ras*10.7,ras*1.25,text="검은색 말",font="Verdana 8",justify=CENTER,fill="black")
-                canvas.create_text(ras*10.6,ras*1.5,text="검은색 킹",font="Verdana 8",justify=CENTER,fill="black")
+                canvas.create_text(ras*10.5,ras*1.25,text="검은색 말",font="Verdana 8",justify=CENTER,fill="black")
+                canvas.create_text(ras*10.5,ras*1.5,text="검은색 킹",font="Verdana 8",justify=CENTER,fill="black")
                 canvas.create_text(ras*10.5,ras*1.75,text="말 지우기",font="Verdana 8",justify=CENTER,fill="black")
                 if (control_add==1):
                     canvas.create_oval(ras*9.35,ras*0.7,ras*9.45,ras*0.8,fill="black", outline="black")
@@ -465,14 +465,14 @@ def qwerty():
                 canvas.create_rectangle(ras*11.375,ras*6.25,ras*11.75,ras*6.625,fill="white")
                 canvas.create_text(ras*11.5625,ras*6.4375,text="?",font="Verdana 9",justify=CENTER,fill="black")
                 #
-                canvas.create_rectangle(ras*10.875,ras*6.25,ras*11.25,ras*6.625,fill="white")
-                canvas.create_polygon(ras*10.975,ras*6.425,ras*11.15,ras*6.425,ras*11.0625,ras*6.525,fill="black")
-                canvas.create_rectangle(ras*10.975,ras*6.525,ras*11.15,ras*6.525,fill="black")
-                canvas.create_rectangle(ras*11.05,ras*6.425,ras*11.05,ras*6.325,fill="black")
-                #
-                canvas.create_rectangle(ras*10.75,ras*6.25,ras*10.375,ras*6.625,fill="white")
-                canvas.create_polygon(ras*10.43,ras*6.4,ras*10.52,ras*6.4,ras*10.57,ras*6.3,ras*10.61,ras*6.4,ras*10.7,ras*6.4, ras*10.62,ras*6.45,ras*10.63,ras*6.55, ras*10.57,ras*6.5, ras*10.5,ras*6.55,ras*10.52,ras*6.45,fill="white",outline="black")
-                #
+                # canvas.create_rectangle(ras*10.875,ras*6.25,ras*11.25,ras*6.625,fill="white")
+                # canvas.create_polygon(ras*10.975,ras*6.425,ras*11.15,ras*6.425,ras*11.0625,ras*6.525,fill="black")
+                # canvas.create_rectangle(ras*10.975,ras*6.525,ras*11.15,ras*6.525,fill="black")
+                # canvas.create_rectangle(ras*11.05,ras*6.425,ras*11.05,ras*6.325,fill="black")
+                # #
+                # canvas.create_rectangle(ras*10.75,ras*6.25,ras*10.375,ras*6.625,fill="white")
+                # canvas.create_polygon(ras*10.43,ras*6.4,ras*10.52,ras*6.4,ras*10.57,ras*6.3,ras*10.61,ras*6.4,ras*10.7,ras*6.4, ras*10.62,ras*6.45,ras*10.63,ras*6.55, ras*10.57,ras*6.5, ras*10.5,ras*6.55,ras*10.52,ras*6.45,fill="white",outline="black")
+                # #
                 #canvas.create_rectangle(ras*9.875,ras*6.25,ras*10.25,ras*6.625,fill="white") # play recorder history
                 #canvas.create_rectangle(ras*9.63,ras*6.25,ras*9.25,ras*6.625,fill="white") # setting
                 #
@@ -481,8 +481,8 @@ def qwerty():
                 canvas.create_rectangle(ras*9.25,ras*3.0,ras*11.75,ras*3.5,fill="white") 
                 canvas.create_text(ras*10.5,ras*3.25,text="새 게임",font="Verdana 8",justify=CENTER,fill="black")
                 canvas.create_text(ras*10.5,ras*3.8,text="선공",font="Verdana 8",justify=CENTER,fill="grey")
-                canvas.create_text(ras*10.12,ras*4.2,text="화이트",font="Verdana 8",justify=CENTER,fill="black") 
-                canvas.create_text(ras*10.2,ras*4.45,text="블랙",font="Verdana 8",justify=CENTER,fill="black")
+                canvas.create_text(ras*10.5,ras*4.2,text="화이트",font="Verdana 8",justify=CENTER,fill="black") 
+                canvas.create_text(ras*10.5,ras*4.45,text="블랙",font="Verdana 8",justify=CENTER,fill="black")
                 if (control_move==1):
                     canvas.create_oval(ras*9.35,ras*4.15,ras*9.45,ras*4.25,fill="black", outline="black")
                 else:
@@ -492,9 +492,9 @@ def qwerty():
                 else:
                     canvas.create_oval(ras*9.35,ras*4.4,ras*9.45,ras*4.5,fill="white", outline="black")
                 canvas.create_text(ras*10.5,ras*4.85,text="게임 모드",font="Verdana 8",justify=CENTER,fill="grey")
-                canvas.create_text(ras*10.75,ras*5.25,text="인간-인간",font="Verdana 8",justify=CENTER,fill="black")
-                canvas.create_text(ras*10.6,ras*5.5,text="인간-로봇",font="Verdana 8",justify=CENTER,fill="black")
-                canvas.create_text(ras*10.62,ras*5.75,text="로봇-인간",font="Verdana 8",justify=CENTER,fill="black")
+                canvas.create_text(ras*10.5,ras*5.25,text="인간-인간",font="Verdana 8",justify=CENTER,fill="black")
+                canvas.create_text(ras*10.5,ras*5.5,text="인간-로봇",font="Verdana 8",justify=CENTER,fill="black")
+                canvas.create_text(ras*10.5,ras*5.75,text="로봇-인간",font="Verdana 8",justify=CENTER,fill="black")
                 # canvas.create_text(ras*10.45,ras*6,text="робот-робот",font="Verdana 8",justify=CENTER,fill="black")
                 if (control_vs==3):
                     canvas.create_oval(ras*9.35,ras*5.2,ras*9.45,ras*5.3,fill="black", outline="black")
