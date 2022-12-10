@@ -491,7 +491,7 @@ def qwerty():
                 canvas.create_text(ras*10.75,ras*5.25,text="인간-인간",font="Verdana 8",justify=CENTER,fill="black")
                 canvas.create_text(ras*10.6,ras*5.5,text="인간-로봇",font="Verdana 8",justify=CENTER,fill="black")
                 canvas.create_text(ras*10.62,ras*5.75,text="로봇-인간",font="Verdana 8",justify=CENTER,fill="black")
-                canvas.create_text(ras*10.45,ras*6,text="робот-робот",font="Verdana 8",justify=CENTER,fill="black")
+                # canvas.create_text(ras*10.45,ras*6,text="робот-робот",font="Verdana 8",justify=CENTER,fill="black")
                 if (control_vs==3):
                     canvas.create_oval(ras*9.35,ras*5.2,ras*9.45,ras*5.3,fill="black", outline="black")
                 else:
@@ -504,10 +504,10 @@ def qwerty():
                     canvas.create_oval(ras*9.35,ras*5.7,ras*9.45,ras*5.8,fill="black", outline="black")
                 else:
                     canvas.create_oval(ras*9.35,ras*5.7,ras*9.45,ras*5.8,fill="white", outline="black")
-                if (control_vs==4):
-                    canvas.create_oval(ras*9.35,ras*5.95,ras*9.45,ras*6.05,fill="black", outline="black")
-                else:
-                    canvas.create_oval(ras*9.35,ras*5.95,ras*9.45,ras*6.05,fill="white", outline="black")
+                # if (control_vs==4):
+                #     canvas.create_oval(ras*9.35,ras*5.95,ras*9.45,ras*6.05,fill="black", outline="black")
+                # else:
+                #     canvas.create_oval(ras*9.35,ras*5.95,ras*9.45,ras*6.05,fill="white", outline="black")
             else: # if (control_memory_mode==1 or control_memory_mode==2):
                 col = "black"
                 if (control_memory_mode==1 or control_memory_mode==3 or control_memory_mode==5):
@@ -1925,15 +1925,15 @@ def qwerty():
                                 control_add = 0
                         if (control_memory_mode==0): # режим для развития памяти
                             # ссылка на скачивание
-                            if (x>=ras*10.875 and y>=ras*6.25 and x<=ras*11.25 and y<=ras*6.625):
-                                canvas.create_rectangle(ras*10.875,ras*6.25,ras*11.25,ras*6.625,fill="white",outline="grey")
-                                canvas.create_polygon(ras*10.975,ras*6.425,ras*11.15,ras*6.425,ras*11.0625,ras*6.525,fill="grey",outline="grey")
-                                canvas.create_rectangle(ras*10.975,ras*6.525,ras*11.15,ras*6.525,fill="grey",outline="grey")
-                                canvas.create_rectangle(ras*11.05,ras*6.425,ras*11.05,ras*6.325,fill="grey",outline="grey")
-                                out_window.update()
-                                sleep(0.1)
-                                #webbrowser.open('https://yadi.sk/d/QsL3RJtT-QnlLA', new=2) # открыть ссылку
-                                webbrowser.open('https://drive.google.com/drive/folders/13rG5KQ2AZVu8M3eQzuGKmlFusTILlbqs', new=2) # открыть ссылку
+                            # if (x>=ras*10.875 and y>=ras*6.25 and x<=ras*11.25 and y<=ras*6.625):
+                            #     canvas.create_rectangle(ras*10.875,ras*6.25,ras*11.25,ras*6.625,fill="white",outline="grey")
+                            #     canvas.create_polygon(ras*10.975,ras*6.425,ras*11.15,ras*6.425,ras*11.0625,ras*6.525,fill="grey",outline="grey")
+                            #     canvas.create_rectangle(ras*10.975,ras*6.525,ras*11.15,ras*6.525,fill="grey",outline="grey")
+                            #     canvas.create_rectangle(ras*11.05,ras*6.425,ras*11.05,ras*6.325,fill="grey",outline="grey")
+                            #     out_window.update()
+                            #     sleep(0.1)
+                            #     #webbrowser.open('https://yadi.sk/d/QsL3RJtT-QnlLA', new=2) # открыть ссылку
+                            #     webbrowser.open('https://drive.google.com/drive/folders/13rG5KQ2AZVu8M3eQzuGKmlFusTILlbqs', new=2) # открыть ссылку
                             # ссылка на обучение
                             if (x>=ras*11.375 and y>=ras*6.25 and x<=ras*11.75 and y<=ras*6.625):
                                 canvas.create_rectangle(ras*11.375,ras*6.25,ras*11.75,ras*6.625,fill="white",outline="grey") 
@@ -1942,13 +1942,13 @@ def qwerty():
                                 sleep(0.1)
                                 webbrowser.open('https://github.com/SeungJae928/BARS-international-mju', new=2) # открыть ссылку
                             # ссылка на оценивание
-                            if (x>=ras*10.375 and y>=ras*6.25 and x<=ras*10.75 and y<=ras*6.625 and 1):
-                                canvas.create_rectangle(ras*10.75,ras*6.25,ras*10.375,ras*6.625,fill="white",outline="grey")
-                                canvas.create_polygon(ras*10.43,ras*6.4,ras*10.52,ras*6.4,ras*10.57,ras*6.3,ras*10.61,ras*6.4,ras*10.7,ras*6.4, ras*10.62,ras*6.45,ras*10.63,ras*6.55, ras*10.57,ras*6.5, ras*10.5,ras*6.55,ras*10.52,ras*6.45,fill="white",outline="grey")
-                                out_window.update()
-                                sleep(0.1)
-                                #webbrowser.open('https://docs.google.com/forms/d/e/1FAIpQLSfWepWJiSSp6inbfOmyO5AJmnSh3XO4asBRnB1FGMFRuKChOg/viewform', new=2)
-                                webbrowser.open('https://docs.google.com/forms/d/e/1FAIpQLSfOLysTI8F9iPvoiu5R__bpcbtZvHo4up4pca1XKYu9sgEkxA/viewform', new=2)
+                            # if (x>=ras*10.375 and y>=ras*6.25 and x<=ras*10.75 and y<=ras*6.625 and 1):
+                            #     canvas.create_rectangle(ras*10.75,ras*6.25,ras*10.375,ras*6.625,fill="white",outline="grey")
+                            #     canvas.create_polygon(ras*10.43,ras*6.4,ras*10.52,ras*6.4,ras*10.57,ras*6.3,ras*10.61,ras*6.4,ras*10.7,ras*6.4, ras*10.62,ras*6.45,ras*10.63,ras*6.55, ras*10.57,ras*6.5, ras*10.5,ras*6.55,ras*10.52,ras*6.45,fill="white",outline="grey")
+                            #     out_window.update()
+                            #     sleep(0.1)
+                            #     #webbrowser.open('https://docs.google.com/forms/d/e/1FAIpQLSfWepWJiSSp6inbfOmyO5AJmnSh3XO4asBRnB1FGMFRuKChOg/viewform', new=2)
+                            #     webbrowser.open('https://docs.google.com/forms/d/e/1FAIpQLSfOLysTI8F9iPvoiu5R__bpcbtZvHo4up4pca1XKYu9sgEkxA/viewform', new=2)
                                 #webbrowser.open('https://habr.com/ru/post/470938/', new=2) # открыть ссылку
                             # войти в режим развития памяти
                             if (y>=ras*7.75 and y<=ras*8.125): 
