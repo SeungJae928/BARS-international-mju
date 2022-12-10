@@ -377,7 +377,11 @@ def qwerty():
                 elif (go_error==5):
                     canvas.create_text(ras*10.5,ras*6.375,text="작업 완료!",font="Verdana 8",justify=CENTER,fill="black")
                 elif (go_error==9):
-                    canvas.create_text(ras*10.5,ras*6.375,text="로봇 생각...",font="Verdana 8",justify=CENTER,fill="black")
+                    if(go_color == 1):
+                        canvas.create_text(ras*10.5,ras*6.375,text="도우미 생각...",font="Verdana 8",justify=CENTER,fill="black")
+                    elif (go_color == 2):
+                        canvas.create_text(ras*10.5,ras*6.375,text="로봇 생각...",font="Verdana 8",justify=CENTER,fill="black")
+                    
             # for special version:
             if (control_memory_mode!=6):
                 canvas.create_rectangle(ras*9.25,ras*7.5,ras*11.75,ras*8.0,fill="white")
