@@ -523,7 +523,7 @@ def qwerty():
                 elif (control_memory_mode<5):
                     canvas.create_text(ras*10.5,ras*6,text="데뷔",font="Verdana 8",justify=CENTER,fill="grey")
                 else:
-                     canvas.create_text(ras*10.5,ras*6,text="연습",font="Verdana 8",justify=CENTER,fill="grey")
+                    canvas.create_text(ras*10.5,ras*6,text="연습",font="Verdana 8",justify=CENTER,fill="grey")
                 if (control_memory_mode==4 or control_memory_mode==3):
                     canvas.create_text(ras*10.5,ras*6.35,text=str(debuts[control_memory_mode_i][0]),font="Verdana 8",justify=CENTER,fill="black") 
                 if (control_memory_mode==6 or control_memory_mode==5):
@@ -1940,7 +1940,7 @@ def qwerty():
                                 canvas.create_text(ras*11.5625,ras*6.4375,text="?",font="Verdana 9",justify=CENTER,fill="grey")
                                 out_window.update()
                                 sleep(0.1)
-                                webbrowser.open('https://www.youtube.com/playlist?list=PL24VxeCr7LD1Z3Cm_VS4bLKthcGdkNWSD', new=2) # открыть ссылку
+                                webbrowser.open('https://github.com/SeungJae928/BARS-international-mju', new=2) # открыть ссылку
                             # ссылка на оценивание
                             if (x>=ras*10.375 and y>=ras*6.25 and x<=ras*10.75 and y<=ras*6.625 and 1):
                                 canvas.create_rectangle(ras*10.75,ras*6.25,ras*10.375,ras*6.625,fill="white",outline="grey")
