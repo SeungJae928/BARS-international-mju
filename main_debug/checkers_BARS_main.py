@@ -16,7 +16,7 @@ from checkers_BARS_file_manager import *
 BARS_file_manager_version("1.0")
 
 
-NAME = "BARS 6.1" # 
+NAME = "BARS_MJU" # 
 file = my_file(NAME)
 # 0  - свободная черная клетка
 # 1  - белая шашка
@@ -439,7 +439,7 @@ def qwerty():
                 else:
                     canvas.create_oval(ras*9.35,ras*1.7,ras*9.45,ras*1.8,fill="white", outline="black")
                 canvas.create_rectangle(ras*9.25,ras*2.25,ras*11.75,ras*2.75,fill="white")  
-                canvas.create_text(ras*10.5,ras*2.5,text="필드를 지우다",font="Verdana 8",justify=CENTER,fill="black")
+                canvas.create_text(ras*10.5,ras*2.5,text="필드 지우기",font="Verdana 8",justify=CENTER,fill="black")
                 #canvas.create_rectangle(ras*9.25,ras*2.05,ras*11.75,ras*2.55,fill="white")  
                 #canvas.create_text(ras*10.5,ras*2.3,text="очистить поле",font="Verdana 8",justify=CENTER,fill="black")
             #control_memory_mode = 1 
@@ -447,7 +447,7 @@ def qwerty():
                 canvas.create_rectangle(ras*9.25,ras*8.25,ras*11.75,ras*8.75,fill="white")
                 canvas.create_text(ras*10.5,ras*8.5,text="플레이",font="Verdana 8",justify=CENTER,fill="black")
                 canvas.create_rectangle(ras*9.25,ras*7.75,ras*11.75,ras*8.125,fill="white")
-                canvas.create_text(ras*10.5,ras*7.9375,text="기억 작업",font="Verdana 7",justify=CENTER,fill="black")
+                canvas.create_text(ras*10.5,ras*7.9375,text="난이도",font="Verdana 7",justify=CENTER,fill="black")
                 if (len(debuts)>1):
                     canvas.create_rectangle(ras*9.25,ras*7.25,ras*11.75,ras*7.625,fill="white")
                     canvas.create_text(ras*10.5,ras*7.4375,text="데뷔",font="Verdana 7",justify=CENTER,fill="black")
@@ -465,11 +465,11 @@ def qwerty():
                 canvas.create_rectangle(ras*11.375,ras*6.25,ras*11.75,ras*6.625,fill="white")
                 canvas.create_text(ras*11.5625,ras*6.4375,text="?",font="Verdana 9",justify=CENTER,fill="black")
                 #
-                # canvas.create_rectangle(ras*10.875,ras*6.25,ras*11.25,ras*6.625,fill="white")
-                # canvas.create_polygon(ras*10.975,ras*6.425,ras*11.15,ras*6.425,ras*11.0625,ras*6.525,fill="black")
-                # canvas.create_rectangle(ras*10.975,ras*6.525,ras*11.15,ras*6.525,fill="black")
-                # canvas.create_rectangle(ras*11.05,ras*6.425,ras*11.05,ras*6.325,fill="black")
-                # #
+                canvas.create_rectangle(ras*10.875,ras*6.25,ras*11.25,ras*6.625,fill="white")
+                canvas.create_polygon(ras*10.975,ras*6.425,ras*11.15,ras*6.425,ras*11.0625,ras*6.525,fill="black")
+                canvas.create_rectangle(ras*10.975,ras*6.525,ras*11.15,ras*6.525,fill="black")
+                canvas.create_rectangle(ras*11.05,ras*6.425,ras*11.05,ras*6.325,fill="black")
+                #
                 # canvas.create_rectangle(ras*10.75,ras*6.25,ras*10.375,ras*6.625,fill="white")
                 # canvas.create_polygon(ras*10.43,ras*6.4,ras*10.52,ras*6.4,ras*10.57,ras*6.3,ras*10.61,ras*6.4,ras*10.7,ras*6.4, ras*10.62,ras*6.45,ras*10.63,ras*6.55, ras*10.57,ras*6.5, ras*10.5,ras*6.55,ras*10.52,ras*6.45,fill="white",outline="black")
                 # #
@@ -1929,16 +1929,16 @@ def qwerty():
                                 control_add = 0
                         if (control_memory_mode==0): # режим для развития памяти
                             # ссылка на скачивание
-                            # if (x>=ras*10.875 and y>=ras*6.25 and x<=ras*11.25 and y<=ras*6.625):
-                            #     canvas.create_rectangle(ras*10.875,ras*6.25,ras*11.25,ras*6.625,fill="white",outline="grey")
-                            #     canvas.create_polygon(ras*10.975,ras*6.425,ras*11.15,ras*6.425,ras*11.0625,ras*6.525,fill="grey",outline="grey")
-                            #     canvas.create_rectangle(ras*10.975,ras*6.525,ras*11.15,ras*6.525,fill="grey",outline="grey")
-                            #     canvas.create_rectangle(ras*11.05,ras*6.425,ras*11.05,ras*6.325,fill="grey",outline="grey")
-                            #     out_window.update()
-                            #     sleep(0.1)
-                            #     #webbrowser.open('https://yadi.sk/d/QsL3RJtT-QnlLA', new=2) # открыть ссылку
-                            #     webbrowser.open('https://drive.google.com/drive/folders/13rG5KQ2AZVu8M3eQzuGKmlFusTILlbqs', new=2) # открыть ссылку
-                            # ссылка на обучение
+                            if (x>=ras*10.875 and y>=ras*6.25 and x<=ras*11.25 and y<=ras*6.625):
+                                canvas.create_rectangle(ras*10.875,ras*6.25,ras*11.25,ras*6.625,fill="white",outline="grey")
+                                canvas.create_polygon(ras*10.975,ras*6.425,ras*11.15,ras*6.425,ras*11.0625,ras*6.525,fill="grey",outline="grey")
+                                canvas.create_rectangle(ras*10.975,ras*6.525,ras*11.15,ras*6.525,fill="grey",outline="grey")
+                                canvas.create_rectangle(ras*11.05,ras*6.425,ras*11.05,ras*6.325,fill="grey",outline="grey")
+                                out_window.update()
+                                sleep(0.1)
+                                #webbrowser.open('https://yadi.sk/d/QsL3RJtT-QnlLA', new=2) # открыть ссылку
+                                webbrowser.open('https://github.com/SeungJae928/BARS-international-mju', new=2) # открыть ссылку
+                            #ссылка на обучение
                             if (x>=ras*11.375 and y>=ras*6.25 and x<=ras*11.75 and y<=ras*6.625):
                                 canvas.create_rectangle(ras*11.375,ras*6.25,ras*11.75,ras*6.625,fill="white",outline="grey") 
                                 canvas.create_text(ras*11.5625,ras*6.4375,text="?",font="Verdana 9",justify=CENTER,fill="grey")
