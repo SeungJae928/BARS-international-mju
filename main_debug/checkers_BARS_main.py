@@ -1,4 +1,5 @@
-﻿from tkinter import *
+﻿import tkinter.messagebox as msgbox
+from tkinter import *
 from random import * # x0 = randint(0, 100)
 from copy import deepcopy 
 #import time
@@ -126,6 +127,7 @@ control_protocol = []
 control_protocol_flag = 0
 control_actions = []
 control_actions_flag = 0
+area_monitor = deepcopy(area_zero2) # 초기 필드를 빈필드로 설정
 
 level_hard = 1
 
@@ -341,50 +343,50 @@ def qwerty():
         canvas.create_rectangle(ras*9,0,ras*12,ras*9,fill="white")
         #control_edit = 1 #
         if (control_edit==0 or control_memory_mode==6):
-            canvas.create_text(ras*10.5,ras*0.25,text="протокол партии",font="Verdana 8",justify=CENTER,fill="black")
+            canvas.create_text(ras*10.5,ras*0.25,text="파티 프로토콜",font="Verdana 8",justify=CENTER,fill="black")
             canvas.create_rectangle(ras*9.25,ras*0.5,ras*11.75,ras*3.5,fill="white")  # ras*6
-            canvas.create_text(ras*10.5,ras*3.75,text="возможные ходы",font="Verdana 8",justify=CENTER,fill="black")
+            canvas.create_text(ras*10.5,ras*3.75,text="가능한 움직임",font="Verdana 8",justify=CENTER,fill="black")
             canvas.create_rectangle(ras*9.25,ras*4,ras*11.75,ras*6,fill="white")
             canvas.create_rectangle(ras*10.625,ras*8.25,ras*11.75,ras*8.75,fill="white")
             if (control_memory_mode==6):
-                canvas.create_text(ras*11.1875,ras*8.5,text="выйти",font="Verdana 8",justify=CENTER,fill="black")
+                canvas.create_text(ras*11.1875,ras*8.5,text="go out(나가라)",font="Verdana 8",justify=CENTER,fill="black")
             else:
-                canvas.create_text(ras*11.1875,ras*8.5,text="меню",font="Verdana 8",justify=CENTER,fill="black")
+                canvas.create_text(ras*11.1875,ras*8.5,text="메뉴",font="Verdana 8",justify=CENTER,fill="black")
             if (control_back):
                 canvas.create_rectangle(ras*9.25,ras*8.25,ras*10.375,ras*8.75,fill="white", outline="black")
-                canvas.create_text(ras*9.8125,ras*8.5,text="назад",font="Verdana 8",justify=CENTER,fill="black")
+                canvas.create_text(ras*9.8125,ras*8.5,text="back(뒤)",font="Verdana 8",justify=CENTER,fill="black")
             else:
                 canvas.create_rectangle(ras*9.25,ras*8.25,ras*10.375,ras*8.75,fill="white", outline="grey")
-                canvas.create_text(ras*9.8125,ras*8.5,text="назад",font="Verdana 8",justify=CENTER,fill="grey")
+                canvas.create_text(ras*9.8125,ras*8.5,text="back(뒤)",font="Verdana 8",justify=CENTER,fill="grey")
             # вывод в виджеты
             vidget1()
             vidget2()
             if (go_error==11):
-                canvas.create_text(ras*10.5,ras*6.375,text="белые выиграли!",font="Verdana 8",justify=CENTER,fill="black")
+                canvas.create_text(ras*10.5,ras*6.375,text="화이트 이겼다!",font="Verdana 8",justify=CENTER,fill="black")
             elif (go_error==12):
-                canvas.create_text(ras*10.5,ras*6.375,text="черные выиграли!",font="Verdana 8",justify=CENTER,fill="black")
+                canvas.create_text(ras*10.5,ras*6.375,text="블랙 이겼다!",font="Verdana 8",justify=CENTER,fill="black")
             elif (control_vs==1 and go_color==2 or control_vs==2 and go_color==1 or control_vs==3 or control_memory_mode==6 or go_error==9):
                 if (go_error==1):
-                    canvas.create_text(ras*10.5,ras*6.375,text="вы должны есть",font="Verdana 8",justify=CENTER,fill="black")
+                    canvas.create_text(ras*10.5,ras*6.375,text="당신은 잡아야합니다",font="Verdana 8",justify=CENTER,fill="red")
                 elif (go_error==2):
-                    canvas.create_text(ras*10.5,ras*6.375,text="так ходить нельзя",font="Verdana 8",justify=CENTER,fill="black")
+                    canvas.create_text(ras*10.5,ras*6.375,text="당신은 움직일 수 없습니다",font="Verdana 8",justify=CENTER,fill="black")
                 elif (go_error==3):
-                    canvas.create_text(ras*10.5,ras*6.375,text="сейчас ходит другой игрок",font="Verdana 7",justify=CENTER,fill="black")
+                    canvas.create_text(ras*10.5,ras*6.375,text="다른 플레이어가 이동 중입니다",font="Verdana 7",justify=CENTER,fill="black")
                 elif (go_error==4):
-                    canvas.create_text(ras*10.5,ras*6.375,text="подумай еще",font="Verdana 8",justify=CENTER,fill="black")
+                    canvas.create_text(ras*10.5,ras*6.375,text="다시 생각해라",font="Verdana 8",justify=CENTER,fill="black")
                 elif (go_error==5):
-                    canvas.create_text(ras*10.5,ras*6.375,text="задание выполнено!",font="Verdana 8",justify=CENTER,fill="black")
+                    canvas.create_text(ras*10.5,ras*6.375,text="작업 완료!",font="Verdana 8",justify=CENTER,fill="black")
                 elif (go_error==9):
-                    canvas.create_text(ras*10.5,ras*6.375,text="робот думает...",font="Verdana 8",justify=CENTER,fill="black")
+                    canvas.create_text(ras*10.5,ras*6.375,text="로봇 생각...",font="Verdana 8",justify=CENTER,fill="black")
             # for special version:
             if (control_memory_mode!=6):
                 canvas.create_rectangle(ras*9.25,ras*7.5,ras*11.75,ras*8.0,fill="white")
-                canvas.create_text(ras*10.5,ras*7.75,text="сохранить протокол",font="Verdana 8",justify=CENTER,fill="black")
+                canvas.create_text(ras*10.5,ras*7.75,text="시작하기",font="Verdana 8",justify=CENTER,fill="black") # 원래 프로토콜 저장
                 if (go_error==11 or go_error==12):
                     canvas.create_rectangle(ras*9.25,ras*6.75,ras*11.75,ras*7.25,fill="white")
-                    canvas.create_text(ras*10.5,ras*7,text="новая игра",font="Verdana 8",justify=CENTER,fill="black")
+                    canvas.create_text(ras*10.5,ras*7,text="new game",font="Verdana 8",justify=CENTER,fill="black")
             else:
-                canvas.create_text(ras*10.5,ras*7.5,text="задание",font="Verdana 8",justify=CENTER,fill="grey") # 0.35
+                canvas.create_text(ras*10.5,ras*7.5,text="연습",font="Verdana 8",justify=CENTER,fill="grey") # 0.35
                 canvas.create_text(ras*10.5,ras*7.85,text=str(zadania[control_memory_mode_i][0]),font="Verdana 8",justify=CENTER,fill="black")
             if (go_error!=11 and go_error!=12):
                 # revers_monitor
@@ -399,16 +401,17 @@ def qwerty():
                 canvas.create_oval(ras*9.95,ras*7.18,ras*10.3,ras*6.83,fill="white")
                 canvas.create_polygon(ras*10.12,ras*7.0,ras*10,ras*6.83,ras*10.28,ras*6.83, fill="white", outline="white")
                 canvas.create_polygon(ras*10.1,ras*6.95,ras*9.98,ras*6.83,ras*10.1,ras*6.83, fill="white", outline="black")
+                canvas.create_rectangle(ras*11.625,ras*7.25,ras*11.125,ras*6.75,fill="white")
                 
         else:
             # остальные кнопки
             if (control_memory_mode!=5):
-                canvas.create_text(ras*10.5,ras*0.35,text="расстановка позиции",font="Verdana 8",justify=CENTER,fill="grey")
-                canvas.create_text(ras*10.6,ras*0.75,text="белая простая",font="Verdana 8",justify=CENTER,fill="black") # ras*10.8,ras*0.75,
-                canvas.create_text(ras*10.5,ras*1.0,text="белая дамка",font="Verdana 8",justify=CENTER,fill="black")
-                canvas.create_text(ras*10.7,ras*1.25,text="черная простая",font="Verdana 8",justify=CENTER,fill="black")
-                canvas.create_text(ras*10.6,ras*1.5,text="черная дамка",font="Verdana 8",justify=CENTER,fill="black")
-                canvas.create_text(ras*10.5,ras*1.75,text="пустое поле",font="Verdana 8",justify=CENTER,fill="black")
+                canvas.create_text(ras*10.5,ras*0.35,text="포지셔닝",font="Verdana 8",justify=CENTER,fill="grey")
+                canvas.create_text(ras*10.6,ras*0.75,text="흰색 말",font="Verdana 8",justify=CENTER,fill="black") # ras*10.8,ras*0.75,
+                canvas.create_text(ras*10.5,ras*1.0,text="흰색 킹",font="Verdana 8",justify=CENTER,fill="black")
+                canvas.create_text(ras*10.7,ras*1.25,text="검은색 말",font="Verdana 8",justify=CENTER,fill="black")
+                canvas.create_text(ras*10.6,ras*1.5,text="검은색 킹",font="Verdana 8",justify=CENTER,fill="black")
+                canvas.create_text(ras*10.5,ras*1.75,text="말 지우기",font="Verdana 8",justify=CENTER,fill="black")
                 if (control_add==1):
                     canvas.create_oval(ras*9.35,ras*0.7,ras*9.45,ras*0.8,fill="black", outline="black")
                 else:
@@ -430,27 +433,27 @@ def qwerty():
                 else:
                     canvas.create_oval(ras*9.35,ras*1.7,ras*9.45,ras*1.8,fill="white", outline="black")
                 canvas.create_rectangle(ras*9.25,ras*2.25,ras*11.75,ras*2.75,fill="white")  
-                canvas.create_text(ras*10.5,ras*2.5,text="очистить поле",font="Verdana 8",justify=CENTER,fill="black")
+                canvas.create_text(ras*10.5,ras*2.5,text="필드를 지우다",font="Verdana 8",justify=CENTER,fill="black")
                 #canvas.create_rectangle(ras*9.25,ras*2.05,ras*11.75,ras*2.55,fill="white")  
                 #canvas.create_text(ras*10.5,ras*2.3,text="очистить поле",font="Verdana 8",justify=CENTER,fill="black")
             #control_memory_mode = 1 
             if (control_memory_mode==0):
                 canvas.create_rectangle(ras*9.25,ras*8.25,ras*11.75,ras*8.75,fill="white")
-                canvas.create_text(ras*10.5,ras*8.5,text="играть",font="Verdana 8",justify=CENTER,fill="black")
+                canvas.create_text(ras*10.5,ras*8.5,text="플레이",font="Verdana 8",justify=CENTER,fill="black")
                 canvas.create_rectangle(ras*9.25,ras*7.75,ras*11.75,ras*8.125,fill="white")
-                canvas.create_text(ras*10.5,ras*7.9375,text="задания на память",font="Verdana 7",justify=CENTER,fill="black")
+                canvas.create_text(ras*10.5,ras*7.9375,text="기억 작업",font="Verdana 7",justify=CENTER,fill="black")
                 if (len(debuts)>1):
                     canvas.create_rectangle(ras*9.25,ras*7.25,ras*11.75,ras*7.625,fill="white")
-                    canvas.create_text(ras*10.5,ras*7.4375,text="дебюты",font="Verdana 7",justify=CENTER,fill="black")
+                    canvas.create_text(ras*10.5,ras*7.4375,text="데뷔",font="Verdana 7",justify=CENTER,fill="black")
                 else:
                     canvas.create_rectangle(ras*9.25,ras*7.25,ras*11.75,ras*7.625,fill="white", outline="grey")
-                    canvas.create_text(ras*10.5,ras*7.4375,text="дебюты",font="Verdana 7",justify=CENTER,fill="grey")
+                    canvas.create_text(ras*10.5,ras*7.4375,text="데뷔",font="Verdana 7",justify=CENTER,fill="grey")
                 if (len(zadania)>1):
                     canvas.create_rectangle(ras*9.25,ras*7.125,ras*11.75,ras*6.75,fill="white")
-                    canvas.create_text(ras*10.5,ras*6.9375,text="задачник",font="Verdana 7",justify=CENTER,fill="black")
+                    canvas.create_text(ras*10.5,ras*6.9375,text="문제집",font="Verdana 7",justify=CENTER,fill="black")
                 else:
                     canvas.create_rectangle(ras*9.25,ras*7.125,ras*11.75,ras*6.75,fill="white", outline="grey")
-                    canvas.create_text(ras*10.5,ras*6.9375,text="задачник",font="Verdana 7",justify=CENTER,fill="grey")
+                    canvas.create_text(ras*10.5,ras*6.9375,text="문제집",font="Verdana 7",justify=CENTER,fill="grey")
                 # кнопки - ссылки на браузер
                 # 0.375 0.125
                 canvas.create_rectangle(ras*11.375,ras*6.25,ras*11.75,ras*6.625,fill="white")
@@ -470,10 +473,10 @@ def qwerty():
                 #canvas.create_text(ras*10.0,ras*2.75,text="уровень сложности",font="Verdana 8",justify=CENTER,fill="black")
                 # др. кнопки
                 canvas.create_rectangle(ras*9.25,ras*3.0,ras*11.75,ras*3.5,fill="white") 
-                canvas.create_text(ras*10.5,ras*3.25,text="новая игра",font="Verdana 8",justify=CENTER,fill="black")
-                canvas.create_text(ras*10.5,ras*3.8,text="первый ход",font="Verdana 8",justify=CENTER,fill="grey")
-                canvas.create_text(ras*10.12,ras*4.2,text="белые",font="Verdana 8",justify=CENTER,fill="black") 
-                canvas.create_text(ras*10.2,ras*4.45,text="черные",font="Verdana 8",justify=CENTER,fill="black")
+                canvas.create_text(ras*10.5,ras*3.25,text="새 게임",font="Verdana 8",justify=CENTER,fill="black")
+                canvas.create_text(ras*10.5,ras*3.8,text="선공",font="Verdana 8",justify=CENTER,fill="grey")
+                canvas.create_text(ras*10.12,ras*4.2,text="화이트",font="Verdana 8",justify=CENTER,fill="black") 
+                canvas.create_text(ras*10.2,ras*4.45,text="블랙",font="Verdana 8",justify=CENTER,fill="black")
                 if (control_move==1):
                     canvas.create_oval(ras*9.35,ras*4.15,ras*9.45,ras*4.25,fill="black", outline="black")
                 else:
@@ -482,11 +485,11 @@ def qwerty():
                     canvas.create_oval(ras*9.35,ras*4.4,ras*9.45,ras*4.5,fill="black", outline="black")
                 else:
                     canvas.create_oval(ras*9.35,ras*4.4,ras*9.45,ras*4.5,fill="white", outline="black")
-                canvas.create_text(ras*10.5,ras*4.85,text="режим игры",font="Verdana 8",justify=CENTER,fill="grey")
-                canvas.create_text(ras*10.75,ras*5.25,text="человек-человек",font="Verdana 8",justify=CENTER,fill="black")
-                canvas.create_text(ras*10.6,ras*5.5,text="человек-робот",font="Verdana 8",justify=CENTER,fill="black")
-                canvas.create_text(ras*10.62,ras*5.75,text="робот-человек",font="Verdana 8",justify=CENTER,fill="black")
-                #canvas.create_text(ras*10.45,ras*6,text="робот-робот",font="Verdana 8",justify=CENTER,fill="black")
+                canvas.create_text(ras*10.5,ras*4.85,text="게임 모드",font="Verdana 8",justify=CENTER,fill="grey")
+                canvas.create_text(ras*10.75,ras*5.25,text="인간-인간",font="Verdana 8",justify=CENTER,fill="black")
+                canvas.create_text(ras*10.6,ras*5.5,text="인간-로봇",font="Verdana 8",justify=CENTER,fill="black")
+                canvas.create_text(ras*10.62,ras*5.75,text="로봇-인간",font="Verdana 8",justify=CENTER,fill="black")
+                canvas.create_text(ras*10.45,ras*6,text="робот-робот",font="Verdana 8",justify=CENTER,fill="black")
                 if (control_vs==3):
                     canvas.create_oval(ras*9.35,ras*5.2,ras*9.45,ras*5.3,fill="black", outline="black")
                 else:
@@ -499,26 +502,26 @@ def qwerty():
                     canvas.create_oval(ras*9.35,ras*5.7,ras*9.45,ras*5.8,fill="black", outline="black")
                 else:
                     canvas.create_oval(ras*9.35,ras*5.7,ras*9.45,ras*5.8,fill="white", outline="black")
-                #if (control_vs==4):
-                #    canvas.create_oval(ras*9.35,ras*5.95,ras*9.45,ras*6.05,fill="black", outline="black")
-                #else:
-                #    canvas.create_oval(ras*9.35,ras*5.95,ras*9.45,ras*6.05,fill="white", outline="black")
+                if (control_vs==4):
+                   canvas.create_oval(ras*9.35,ras*5.95,ras*9.45,ras*6.05,fill="black", outline="black")
+                else:
+                   canvas.create_oval(ras*9.35,ras*5.95,ras*9.45,ras*6.05,fill="white", outline="black")
             else: # if (control_memory_mode==1 or control_memory_mode==2):
                 col = "black"
                 if (control_memory_mode==1 or control_memory_mode==3 or control_memory_mode==5):
                     col = "black"
                     canvas.create_rectangle(ras*9.25,ras*8.25,ras*11.75,ras*8.75,fill="white")
-                    canvas.create_text(ras*10.5,ras*8.5,text="приступить к заданию",font="Verdana 7",justify=CENTER,fill="black")
+                    canvas.create_text(ras*10.5,ras*8.5,text="작업 시작",font="Verdana 7",justify=CENTER,fill="black")
                 else:
                     col = "grey"
                     canvas.create_rectangle(ras*9.25,ras*8.25,ras*11.75,ras*8.75,fill="white")
-                    canvas.create_text(ras*10.5,ras*8.5,text="сдать задание",font="Verdana 8",justify=CENTER,fill="black")
+                    canvas.create_text(ras*10.5,ras*8.5,text="작업 제출",font="Verdana 8",justify=CENTER,fill="black")
                 if (control_memory_mode<3):   
-                    canvas.create_text(ras*10.5,ras*6.35,text="уровень сложности",font="Verdana 8",justify=CENTER,fill="grey")
+                    canvas.create_text(ras*10.5,ras*6.35,text="난이도",font="Verdana 8",justify=CENTER,fill="grey")
                 elif (control_memory_mode<5):
-                    canvas.create_text(ras*10.5,ras*6,text="дебют",font="Verdana 8",justify=CENTER,fill="grey")
+                    canvas.create_text(ras*10.5,ras*6,text="데뷔",font="Verdana 8",justify=CENTER,fill="grey")
                 else:
-                     canvas.create_text(ras*10.5,ras*6,text="задание",font="Verdana 8",justify=CENTER,fill="grey")
+                     canvas.create_text(ras*10.5,ras*6,text="연습",font="Verdana 8",justify=CENTER,fill="grey")
                 if (control_memory_mode==4 or control_memory_mode==3):
                     canvas.create_text(ras*10.5,ras*6.35,text=str(debuts[control_memory_mode_i][0]),font="Verdana 8",justify=CENTER,fill="black") 
                 if (control_memory_mode==6 or control_memory_mode==5):
@@ -538,9 +541,9 @@ def qwerty():
                 canvas.create_polygon(ras*9.45,ras*6.75,ras*9.45,ras*7.25,ras*9.25,ras*7.0, fill="white", outline=col)
                 #
                 canvas.create_rectangle(ras*9.25,ras*7.5,ras*11.75,ras*8.0,fill="white")
-                canvas.create_text(ras*10.5,ras*7.75,text="выйти",font="Verdana 8",justify=CENTER,fill="black")
+                canvas.create_text(ras*10.5,ras*7.75,text="저장",font="Verdana 8",justify=CENTER,fill="black")
                 if (control_memory_mode_over>=0):
-                    canvas.create_text(ras*10.5,ras*4.6,text="ваш результат",font="Verdana 8",justify=CENTER,fill="grey")
+                    canvas.create_text(ras*10.5,ras*4.6,text="당신의 결과",font="Verdana 8",justify=CENTER,fill="grey")
                     canvas.create_text(ras*10.5,ras*5.0,text=str(int(control_memory_mode_over/control_memory_mode_i*10))+"%",font="Verdana 10",justify=CENTER,fill="black")
                     control_memory_mode_over = -1
                 
@@ -1836,14 +1839,27 @@ def qwerty():
                         back() # отменить ход
                     # for special version
                     if (x>=ras*9.25 and x<=ras*11.75 and y>=ras*7.5 and y<=ras*8.0 and control_memory_mode!=6):
-                        canvas.create_rectangle(ras*9.25,ras*7.5,ras*11.75,ras*8.0,fill="white", outline="grey")
-                        canvas.create_text(ras*10.5,ras*7.75,text="сохранить протокол",font="Verdana 8",justify=CENTER,fill="grey")
-                        out_window.update()
-                        print_file()
-                        sleep(0.1)
+                        go_error = 0
+                        area_monitor = deepcopy(area_zero)
+                        control_move = 1
+                        go_color = 1
+                        history.clear()
+                        history.append(deepcopy(area_monitor))
+                        klik.clear()
+                        klik = [[-1,-1],[-1,-1]]
+                        moved_checkers = -1
+                        go_operation = deepcopy(generator_move(area_monitor, go_color))
+                        msgbox.showinfo("알림", "당신은 화이트 선입니다")
+                        # canvas.create_rectangle(ras*9.25,ras*7.5,ras*11.75,ras*8.0,fill="white", outline="grey")
+                        # canvas.create_text(ras*10.5,ras*7.75,text="сохранить протокол",font="Verdana 8",justify=CENTER,fill="grey")
+                        # out_window.update()
+                        # print_file()
+                        # sleep(0.1)
                         #print("------------------------------------")
+
                     # новая игра не входя в меню
                     if (x>=ras*9.25 and y>=ras*6.75 and x<=ras*11.75 and y<=ras*7.25 and (go_error==11 or go_error==12)):
+                        # 이 부분 새게임 세팅인것으로 파악돼서 시작하기 버튼에 이거 넣어놨습니다
                         go_error = 0
                         area_monitor = deepcopy(area_zero)
                         control_move = 1
@@ -1878,7 +1894,7 @@ def qwerty():
                         if (control_memory_mode!=5):
                             # еще кнопочки
                             # большие
-                            if (y>=ras*2.25 and y<=ras*2.75):
+                            if (y>=ras*2.25 and y<=ras*2.75):  # 필드 지우기
                                 area_monitor = deepcopy(area_zero2)
                             # add
                             if (y>=ras*0.625 and y<=ras*0.875):
@@ -1932,10 +1948,11 @@ def qwerty():
                                 control_memory_mode = 5
                                 control_memory_mode_i = 1
                                 area_monitor = deepcopy(zadania[control_memory_mode_i][1])
-                            # новая игра
+                            # 새게임
                             if (y>=ras*3 and y<=ras*3.5):
                                 area_monitor = deepcopy(area_zero)
                                 control_move = 1
+                                msgbox.showinfo("알림", "당신은 화이트 선입니다")
                             # move
                             if (y>=ras*4.075 and y<=ras*4.325):
                                 control_move = 1
@@ -1948,8 +1965,8 @@ def qwerty():
                                 control_vs = 2
                             if (y>=ras*5.625 and y<=ras*5.875):
                                 control_vs = 1
-                            #if (y>=ras*5.875 and y<=ras*6.125): # если будет играть робот против робота
-                            #    control_vs = 4
+                            if (y>=ras*5.875 and y<=ras*6.125): # если будет играть робот против робота
+                                control_vs = 4
                         else: # режим тренировки памяти
                             if ((control_memory_mode==1 or control_memory_mode==3 or control_memory_mode==5) and y>=ras*6.75 and y<=ras*7.25):
                                 # смена режима по кнопкам
