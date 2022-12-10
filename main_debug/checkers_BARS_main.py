@@ -390,18 +390,20 @@ def qwerty():
                 canvas.create_text(ras*10.5,ras*7.85,text=str(zadania[control_memory_mode_i][0]),font="Verdana 8",justify=CENTER,fill="black")
             if (go_error!=11 and go_error!=12):
                 # revers_monitor
-                canvas.create_rectangle(ras*10.625,ras*7.25,ras*11.125,ras*6.75,fill="white")
+                canvas.create_rectangle(ras*10.325,ras*7.25,ras*10.825,ras*6.75,fill="white")
                 col = "black"
                 if (control_revers_monitor==1):
                     col = "grey"
-                canvas.create_polygon(ras*10.775,ras*7.15,ras*10.675,ras*7.05,ras*10.73,ras*7.05,ras*10.73,ras*6.85,ras*10.81,ras*6.85,ras*10.81,ras*7.05,ras*10.875,ras*7.05, fill="white", outline=col)
-                canvas.create_polygon(ras*10.875,ras*6.95,ras*10.975,ras*6.85,ras*11.075,ras*6.95,ras*11.01,ras*6.95,ras*11.01,ras*7.15,ras*10.93,ras*7.15,ras*10.93,ras*6.95, fill="white", outline=col)
+                canvas.create_polygon(ras*10.475,ras*7.15,ras*10.375,ras*7.05,ras*10.43,ras*7.05,ras*10.43,ras*6.85,ras*10.51,ras*6.85,ras*10.51,ras*7.05,ras*10.575,ras*7.05, fill="white", outline=col)
+                canvas.create_polygon(ras*10.575,ras*6.95,ras*10.675,ras*6.85,ras*10.775,ras*6.95,ras*10.71,ras*6.95,ras*10.71,ras*7.15,ras*10.63,ras*7.15,ras*10.63,ras*6.95, fill="white", outline=col)
                 # revers_monitor_always
-                canvas.create_rectangle(ras*9.875,ras*7.25,ras*10.375,ras*6.75,fill="white")
-                canvas.create_oval(ras*9.95,ras*7.18,ras*10.3,ras*6.83,fill="white")
-                canvas.create_polygon(ras*10.12,ras*7.0,ras*10,ras*6.83,ras*10.28,ras*6.83, fill="white", outline="white")
-                canvas.create_polygon(ras*10.1,ras*6.95,ras*9.98,ras*6.83,ras*10.1,ras*6.83, fill="white", outline="black")
+                canvas.create_rectangle(ras*9.375,ras*7.25,ras*9.875,ras*6.75,fill="white")
+                canvas.create_oval(ras*9.45,ras*7.18,ras*9.8,ras*6.83,fill="white")
+                canvas.create_polygon(ras*9.62,ras*7.0,ras*9.5,ras*6.83,ras*10.28,ras*6.83, fill="white", outline="white")
+                canvas.create_polygon(ras*9.6,ras*6.95,ras*9.48,ras*6.83,ras*9.6,ras*6.83, fill="white", outline="black")
+                
                 canvas.create_rectangle(ras*11.625,ras*7.25,ras*11.125,ras*6.75,fill="white")
+                canvas.create_polygon(ras*11.225, ras*6.825, ras*11.225, ras*7.175, ras*11.3, ras*7.175, ras*11.3, ras*7, ras*11.45, ras*7, ras*11.45, ras*7.175, ras*11.535, ras*7.175, ras*11.535, ras*6.825, ras*11.45, ras*6.825, ras*11.45, ras*6.95, ras*11.3, ras*6.95, ras*11.3, ras*6.825, fill="white", outline="black")
                 
         else:
             # остальные кнопки
@@ -503,9 +505,9 @@ def qwerty():
                 else:
                     canvas.create_oval(ras*9.35,ras*5.7,ras*9.45,ras*5.8,fill="white", outline="black")
                 if (control_vs==4):
-                   canvas.create_oval(ras*9.35,ras*5.95,ras*9.45,ras*6.05,fill="black", outline="black")
+                    canvas.create_oval(ras*9.35,ras*5.95,ras*9.45,ras*6.05,fill="black", outline="black")
                 else:
-                   canvas.create_oval(ras*9.35,ras*5.95,ras*9.45,ras*6.05,fill="white", outline="black")
+                    canvas.create_oval(ras*9.35,ras*5.95,ras*9.45,ras*6.05,fill="white", outline="black")
             else: # if (control_memory_mode==1 or control_memory_mode==2):
                 col = "black"
                 if (control_memory_mode==1 or control_memory_mode==3 or control_memory_mode==5):
@@ -1147,6 +1149,7 @@ def qwerty():
         global control_revers_monitor
         global control_revers_monitor_always
         kostil = 0
+        print("my")
         if (klik[0][0]==-1 and area_monitor[y][x]!=9 and area_monitor[y][x]!=0): # взять шашку
             if (area_monitor[y][x]%10==go_color):
                 klik[0][0] = x
@@ -1785,13 +1788,14 @@ def qwerty():
                     control_edit_checkers = [-1,-1,0]
                     go_error = 0
                     if (control_edit==1):
+                        print("hi")
                         control_edit = 0
                         go_color = control_move
                         history.clear()
                         history.append(deepcopy(area_monitor))
                         go_operation = deepcopy(generator_move(area_monitor, go_color))
                         print_go_operation()
-                        if (go_color==control_vs or control_vs==4):
+                        if (go_color==control_vs or control_vs==4): # 헬퍼 클릭시 이쪽 코드 실행
                             mozg()
                     else:
                         control_edit = 1
@@ -1802,18 +1806,30 @@ def qwerty():
                     control_revers_monitor = 0
                     control_revers_monitor_always = 0
                 #canvas.create_rectangle(ras*9.875,ras*7.25,ras*10.375,ras*6.75,fill="white")
-                elif (x>=ras*10.625 and y<=ras*7.25 and x<=ras*11.125 and y>=ras*6.75 and (control_edit==0 or control_memory_mode==6) and go_error!=11 and go_error!=12): 
+                elif (x>=ras*10.325 and y<=ras*7.25 and x<=ras*10.825 and y>=ras*6.75 and (control_edit==0 or control_memory_mode==6) and go_error!=11 and go_error!=12): 
                     if (control_revers_monitor==1):
                         control_revers_monitor = 0
                     else:
                         control_revers_monitor = 1
-                elif (x>=ras*9.875 and y<=ras*7.25 and x<=ras*10.375 and y>=ras*6.75 and (control_edit==0 or control_memory_mode==6) and go_error!=11 and go_error!=12): 
+                elif (x>=ras*9.375 and y<=ras*7.25 and x<=ras*9.875 and y>=ras*6.75 and (control_edit==0 or control_memory_mode==6) and go_error!=11 and go_error!=12): 
                     if (control_revers_monitor_always==1):
                         control_revers_monitor_always = 0
                     else:
                         control_revers_monitor_always = 1
                     #print(control_revers_monitor_always)
                     #reboot_monitor()
+                elif (x>=ras*11.125 and y<=ras*7.25 and x<=ras*11.625 and y>=ras*6.75):
+                    control_vs = 4
+                    if(control_vs == 4) :
+                        mozg()
+                        mozg()
+                        reboot_checkers()
+                        reboot_controller()
+                        go_operation = deepcopy(generator_move(area_monitor, go_color))
+                        print_go_operation()
+                        control_vs = 2
+                    
+
                 elif (y>=ras*8.25 and y<=ras*8.75 and x>=ras*10.625 and x<=ras*11.75 and control_memory_mode==6):
                     xx = 0
                     yy = 0
@@ -1965,7 +1981,7 @@ def qwerty():
                                 control_vs = 2
                             if (y>=ras*5.625 and y<=ras*5.875):
                                 control_vs = 1
-                            if (y>=ras*5.875 and y<=ras*6.125): # если будет играть робот против робота
+                            if (y>=ras*5.875 and y<=ras*6.125): # 헬퍼로 연결
                                 control_vs = 4
                         else: # режим тренировки памяти
                             if ((control_memory_mode==1 or control_memory_mode==3 or control_memory_mode==5) and y>=ras*6.75 and y<=ras*7.25):
@@ -2017,6 +2033,7 @@ def qwerty():
                                 control_memory_mode = 0
                     
             if (control_edit==0 or control_memory_mode==6): # вызов рисовалки информации на виджетов
+                
                 if (len(history)>1):
                     control_protocol.clear()
                     control_protocol_flag = len(history) - 1
@@ -2210,7 +2227,7 @@ def qwerty():
         reboot_controller()
         go_operation = deepcopy(generator_move(area_monitor, go_color))
         print_go_operation()
-     
+    
     canvas.bind("<Button-1>", click1)   # ПКМ
     canvas.bind("<MouseWheel>", click3) # крутим колесико
     canvas.bind("<Button-3>", click2)   # ЛКМ
