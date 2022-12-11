@@ -1,4 +1,5 @@
 ﻿import tkinter.messagebox as msgbox
+import sys
 from tkinter import *
 from random import * # x0 = randint(0, 100)
 from copy import deepcopy 
@@ -14,7 +15,9 @@ from checkers_BARS_brain import *
 BARS_brain_version("2.0 beta")
 from checkers_BARS_file_manager import *
 BARS_file_manager_version("1.0")
-
+import threading
+import ctypes 
+import time 
 
 NAME = "BARS_MJU" # 
 file = my_file(NAME)
@@ -105,7 +108,11 @@ control_edit_checkers = [-1,-1,0]
 
 moved_checkers = -1
 
-go_color = 1
+go_color = 10
+
+remainTime = 60
+
+state = 0
 
 count1 = 0  # for generator_move
 
@@ -116,7 +123,7 @@ control_move = go_color # кто первый ходит
 control_add = 1 # какой цвет\шашку\дамку добавить
 control_edit = 0 # я в меню или нет
 control_vs = 2 # за кого играет робот #######################################################################################################
-go_error = 0 # для вывода на контроллере сообщения об ошибке
+go_error = 30 # для вывода на контроллере сообщения об ошибке
 control_back = 0 # есть\нет возможности назать "назад"
 control_forward = 0 # есть\нет возможности назать "вперед" - но пока не использую
 control_revers_monitor = 0 # 1 - нормальное отображение поля; 2 - поле перевернуто (черные ближе к игроку)
@@ -131,6 +138,11 @@ area_monitor = deepcopy(area_zero2) # 초기 필드를 빈필드로 설정
 
 level_hard = 1
 
+
+    # t1.start() 
+    # time.sleep(2) 
+    # t1.raise_exception() 
+    # t1.join() 
 def read_file():
     global debuts
     global zadania
@@ -172,12 +184,66 @@ def qwerty():
     global control_revers_monitor
     global control_revers_monitor_always
     global level_hard
+    global t1
     out_window = Tk()
     #out_window.title('BARS 4.3')#============> поменять версию и в print_file() # demonstration special
     out_window.title(NAME)
     #window.geometry('1000x1000')
     #canvas = Canvas(out_window,width=9*ras,height=9*ras)
     canvas = Canvas(out_window,width=12*ras,height=9*ras,bg="white") # ,cursor="pencil"
+
+    class thread_with_exception(threading.Thread): 
+        def __init__(self, name, mtime): 
+            threading.Thread.__init__(self) 
+            self.name = name 
+            self.mtime = mtime
+            self.num = 0
+            self.remainTime = 60
+
+        def run(self): 
+            try: 
+                for i in range(self.mtime):
+                    self.remainTime = self.remainTime - 1
+                    print(self.remainTime)
+                    reboot_monitor()
+                    time.sleep(1)
+                self.num = 1
+                control_vs = 4
+                if(control_vs == 4) :
+                    mozg()
+                    mozg()
+                    reboot_checkers()
+                    reboot_controller()
+                    go_operation = deepcopy(generator_move(area_monitor, go_color))
+                    print_go_operation()
+                    control_vs = 2
+            finally: 
+                reboot_controller()
+
+        def get_id(self): 
+            # returns id of the respective thread 
+            if hasattr(self, '_thread_id'): 
+                return self._thread_id 
+            for id, thread in threading._active.items(): 
+                if thread is self: 
+                    return id
+   
+        def raise_exception(self): 
+            thread_id = self.get_id() 
+            res = ctypes.pythonapi.PyThreadState_SetAsyncExc(thread_id, 
+                  ctypes.py_object(SystemExit)) 
+            if res > 1: 
+                ctypes.pythonapi.PyThreadState_SetAsyncExc(thread_id, 0) 
+                print('Exception raise failure') 
+    
+        def clone(self):
+            return thread_with_exception('name', self.mtime)
+       
+    t1 = thread_with_exception('Thread 1', 60) 
+
+    def clicked():
+        print('click')
+        return 1
 
     def print_file():
         global control_vs
@@ -263,6 +329,7 @@ def qwerty():
         global control_revers_monitor_always
         global debuts
         global zadania
+        global t1
         
         def bykva(xx):
             if(1):
@@ -361,7 +428,12 @@ def qwerty():
             # вывод в виджеты
             vidget1()
             vidget2()
-            if (go_error==11):
+            string = "턴 종료까지 " + str(t1.remainTime) + " 초 남음"
+            if(go_error==0):
+                canvas.create_text(ras*10.5,ras*6.375,text=string,font="Verdana 8",justify=CENTER,fill="black")
+            elif(go_error==20):
+                canvas.create_text(ras*10.5,ras*6.375,text="움직임을 기다리는 중...",font="Verdana 8",justify=CENTER,fill="black")
+            elif (go_error==11):
                 canvas.create_text(ras*10.5,ras*6.375,text="화이트 이겼다!",font="Verdana 8",justify=CENTER,fill="black")
             elif (go_error==12):
                 canvas.create_text(ras*10.5,ras*6.375,text="블랙 이겼다!",font="Verdana 8",justify=CENTER,fill="black")
@@ -729,6 +801,9 @@ def qwerty():
     
     def print_go_operation():
         global go_operation
+        global go_color
+        global t1
+        global control_vs
 
         def print_coo(yy,xx):
             if(1):
@@ -977,7 +1052,7 @@ def qwerty():
                             x = history[i][u-1]%10
                             print_coo(y,x)
                         else:
-                           print(".....", end='') 
+                            print(".....", end='') 
                     else:
                         print(".....", end='')
                     print()
@@ -1104,6 +1179,7 @@ def qwerty():
         global go_color
         global go_error
         global go_operation
+        global t1
         go_error = 9
         reboot_controller()
         out_window.update()
@@ -1135,7 +1211,9 @@ def qwerty():
                 go_error = 0
             reboot_checkers()
             reboot_controller()
-        #print("2", evklid(area_monitor, go_color))
+        if(go_color==1):
+            t1 = t1.clone()
+            t1.start()
 
     #===================================================================================================================================================================================================
     #===================================================================================================================================================================================================
@@ -1152,9 +1230,12 @@ def qwerty():
         global control_memory_mode
         global control_revers_monitor
         global control_revers_monitor_always
+        global t1
         kostil = 0
-        print("my")
         if (klik[0][0]==-1 and area_monitor[y][x]!=9 and area_monitor[y][x]!=0): # взять шашку
+            clicked()
+            t1.raise_exception() 
+            reboot_controller()
             if (area_monitor[y][x]%10==go_color):
                 klik[0][0] = x
                 klik[0][1] = y
@@ -1267,6 +1348,7 @@ def qwerty():
             reboot_controller()
             out_window.update()
             print_history()
+        go_error = 20
         reboot_checkers()
         reboot_controller()
         if (kostil==1 and control_memory_mode==0):
@@ -1703,6 +1785,8 @@ def qwerty():
         global go_operation
         global debuts
         global zadania
+        global t1
+        global state
         if (klik_flag==1):
             klik_flag = 0
             x = event.x
@@ -1718,6 +1802,7 @@ def qwerty():
                         if (control_revers_monitor_result()):
                             x = 7 - x
                             y = 7 - y
+                            print("checker")
                         people_move(y,x)
                         if (control_revers_monitor_result()):
                             x = 7 - x
@@ -1792,7 +1877,6 @@ def qwerty():
                     control_edit_checkers = [-1,-1,0]
                     go_error = 0
                     if (control_edit==1):
-                        print("hi")
                         control_edit = 0
                         go_color = control_move
                         history.clear()
@@ -1823,6 +1907,7 @@ def qwerty():
                     #print(control_revers_monitor_always)
                     #reboot_monitor()
                 elif (x>=ras*11.125 and y<=ras*7.25 and x<=ras*11.625 and y>=ras*6.75):
+                    t1.raise_exception() 
                     control_vs = 4
                     if(control_vs == 4) :
                         mozg()
@@ -1857,8 +1942,16 @@ def qwerty():
                 elif (control_edit==0 or control_memory_mode==6):
                     if (y>=ras*8.25 and y<=ras*8.75 and x>=ras*9.25 and x<=ras*10.375 and control_back==1):
                         back() # отменить ход
+                        t1.raise_exception()
+                        t1 = t1.clone()
+                        t1.start()
                     # for special version
-                    if (x>=ras*9.25 and x<=ras*11.75 and y>=ras*7.5 and y<=ras*8.0 and control_memory_mode!=6):
+                    if (x>=ras*9.25 and x<=ras*11.75 and y>=ras*7.5 and y<=ras*8.0 and control_memory_mode!=6): #시작버튼
+                        if(state==1):
+                            t1.raise_exception() 
+                        t1 = t1.clone()
+                        t1.start()
+                        state = 1
                         go_error = 0
                         area_monitor = deepcopy(area_zero)
                         control_move = 1
@@ -1879,7 +1972,6 @@ def qwerty():
 
                     # новая игра не входя в меню
                     if (x>=ras*9.25 and y>=ras*6.75 and x<=ras*11.75 and y<=ras*7.25 and (go_error==11 or go_error==12)):
-                        # 이 부분 새게임 세팅인것으로 파악돼서 시작하기 버튼에 이거 넣어놨습니다
                         go_error = 0
                         area_monitor = deepcopy(area_zero)
                         control_move = 1
@@ -2065,6 +2157,16 @@ def qwerty():
                 control_back = 0
             klik_flag = 1
             reboot_monitor()
+        if(t1.num == 1):
+                control_vs = 4
+                if(control_vs == 4) :
+                    mozg()
+                    mozg()
+                    reboot_checkers()
+                    reboot_controller()
+                    go_operation = deepcopy(generator_move(area_monitor, go_color))
+                    print_go_operation()
+                    control_vs = 2
 
     def craft_protocol(a,b):  # продумать виджет 1
         global control_protocol
@@ -2239,6 +2341,8 @@ def qwerty():
     canvas.pack()
     out_window.mainloop() # out_window.update()
     #in_window.mainloop()
+
+
     
 read_file()
 #print(debuts)
