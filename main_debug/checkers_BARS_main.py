@@ -1,9 +1,8 @@
 ﻿import tkinter.messagebox as msgbox
 import sys
 from tkinter import *
-from random import * # x0 = randint(0, 100)
+from random import *
 from copy import deepcopy 
-#import time
 from time import sleep
 from time import time
 Time = int(time()*1000)
@@ -19,7 +18,7 @@ import threading
 import ctypes 
 import time 
 
-NAME = "BARS_MJU" # 
+NAME = "BARS_MJU"
 file = my_file(NAME)
 # 0  - свободная черная клетка
 # 1  - белая шашка
